@@ -1,0 +1,5 @@
+{
+  "current prompt tokens | current completion tokens": "今度プロンプト数 | 今度補完数",
+  "Code Completion Usage Summary": "コード補完使用量サマリー",
+  "current prompt tokens: {current_prompt_tokens}\ncurrent completion tokens: {current_completion_tokens}\ncurrent total tokens: {current_total_tokens}\ncurrent tokens per second: {current_tokens_per_second}\ntotal prompt tokens: {total_prompt_tokens}\ntotal completion tokens: {total_completion_tokens}\ntotal total tokens: {total_total_tokens}\ntotal tokens per second: {total_tokens_per_second}": "今度プロンプト数: {current_prompt_tokens}\n今回補完数: {current_completion_tokens}\n今度トータル数: {current_total_tokens}\n今度秒間生成数: {current_tokens_per_second}\n\n総プロンプト数: {total_prompt_tokens}\n\t\t\t\t\t総補完数: {total_completion_tokens}\n\t\t\t\t\t総トックン数: {total_total_tokens}\n\t\t\t\t\t総秒間生成数: {total_tokens_per_second}"
+}

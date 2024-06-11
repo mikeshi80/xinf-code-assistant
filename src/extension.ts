@@ -48,27 +48,53 @@ interface Completion {
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	// // The command has been defined in the package.json file
-	// // Now provide the implementation of the command with registerCommand
-	// // The commandId parameter must match the command field in package.json
-	// const disposable = vscode.commands.registerCommand('xinf-code-assistant.helloWorld', () => {
-	// 	// The code you place here will be executed every time your command is executed
-	// 	// Display a message box to the user
-	// 	vscode.window.showInformationMessage('Hello World from xinf-code-assistant!');
-	// });
-
-	// context.subscriptions.push(disposable);
-
-	let prompt_tokens = 0;
-	let completion_tokens = 0;
+	let total_prompt_tokens = 0;
+	let total_completion_tokens = 0;
+	let total_total_tokens = 0;
+	let total_duration = 0;
+	let total_tokens_per_second = 0;
 
 	let current_prompt_tokens = 0;
 	let current_completion_tokens = 0;
+	let current_total_tokens = 0;
+	let current_tokens_per_second = 0;
+
+	const disposable = vscode.commands.registerCommand("xinf-coder.showUsage", () => {
+		vscode.window.showInformationMessage(
+			vscode.l10n.t("Code Completion Usage Summary"),
+			{
+				modal: true,
+				detail: vscode.l10n.t(`current prompt tokens: {current_prompt_tokens}
+current completion tokens: {current_completion_tokens}
+current total tokens: {current_total_tokens}
+current tokens per second: {current_tokens_per_second}
+total prompt tokens: {total_prompt_tokens}
+total completion tokens: {total_completion_tokens}
+total total tokens: {total_total_tokens}
+total tokens per second: {total_tokens_per_second}`,
+					{
+						current_prompt_tokens,
+						current_completion_tokens,
+						current_total_tokens,
+						current_tokens_per_second: current_tokens_per_second.toFixed(2),
+						total_prompt_tokens,
+						total_completion_tokens,
+						total_total_tokens,
+						total_tokens_per_second: total_tokens_per_second.toFixed(2)
+					}),
+			}
+		);
+	});
+	context.subscriptions.push(disposable);
+
 
 	const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 0);
-	statusBar.text = `${current_prompt_tokens}/${current_completion_tokens} | ${prompt_tokens}/${completion_tokens}`;
-	statusBar.tooltip = "current prompt tokens / current completion tokens | total prompt tokens / total completion tokens";
+	statusBar.text = `${current_prompt_tokens} | ${current_completion_tokens}`;
+	statusBar.tooltip = vscode.l10n.t("current prompt tokens | current completion tokens");
+	statusBar.command = "xinf-coder.showUsage";
+
 	statusBar.show();
+	context.subscriptions.push(statusBar);
 
 	const provider: vscode.InlineCompletionItemProvider = {
 		async provideInlineCompletionItems(document, position, context, token) {
@@ -111,6 +137,7 @@ export function activate(context: vscode.ExtensionContext) {
 			};
 
 			try {
+				const start = (new Date()).getTime();
 				const body = JSON.stringify(request);
 				const response = (await fetch(
 					`${endpoint}/v1/code/completions`,
@@ -124,6 +151,22 @@ export function activate(context: vscode.ExtensionContext) {
 				).then((res) => res.json()));
 
 				const completion = response as Completion;
+				const end = (new Date()).getTime();
+
+				const duration = (end - start) / 1000;
+
+				current_prompt_tokens = completion.usage.prompt_tokens;
+				current_completion_tokens = completion.usage.completion_tokens;
+				current_total_tokens = completion.usage.total_tokens;
+				current_tokens_per_second = current_completion_tokens / duration;
+
+				total_prompt_tokens += current_prompt_tokens;
+				total_completion_tokens += current_completion_tokens;
+				total_total_tokens += current_total_tokens;
+				total_duration += duration;
+				total_tokens_per_second = total_completion_tokens / total_duration;
+
+				statusBar.text = `${current_prompt_tokens} | ${current_completion_tokens}`;
 
 				const items = [];
 				for (const choice of completion.choices) {

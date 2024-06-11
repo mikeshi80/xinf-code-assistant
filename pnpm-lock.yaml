@@ -15,7 +15,7 @@ importers:
         specifier: ~18.19.34
         version: 18.19.34
       '@types/vscode':
-        specifier: ^1.90.0
+        specifier: ^1.73.0
         version: 1.90.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.13.0
@@ -913,7 +913,7 @@ packages:
     engines: {node: '>=0.8.19'}
 
   inflight@1.0.6:
-    resolution: {integrity: sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=}
+    resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}

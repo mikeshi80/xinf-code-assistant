@@ -1,0 +1,5 @@
+{
+  "current prompt tokens | current completion tokens": "本次提示数 | 本次生成数",
+  "Code Completion Usage Summary": "代码补全用量统计",
+  "current prompt tokens: {current_prompt_tokens}\ncurrent completion tokens: {current_completion_tokens}\ncurrent total tokens: {current_total_tokens}\ncurrent tokens per second: {current_tokens_per_second}\ntotal prompt tokens: {total_prompt_tokens}\ntotal completion tokens: {total_completion_tokens}\ntotal total tokens: {total_total_tokens}\ntotal tokens per second: {total_tokens_per_second}": "本次提示数: {current_prompt_tokens}\n本次补全数: {current_completion_tokens}\n本次总词元数: {current_total_tokens}\n本次每秒词元生成数: {current_tokens_per_second}\n\n总提示数: {total_prompt_tokens}\n\t\t\t\t\t总补全数: {total_completion_tokens}\n\t\t\t\t\t总计词元数: {total_total_tokens}\n\t\t\t\t\t总计每秒词元生成数: {total_tokens_per_second}"
+}
