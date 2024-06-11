@@ -1,0 +1,11 @@
+{
+  "xinf-coder.description": "A code assistant tool works with xinference code completions function",
+  "xinf-coder.title": "Xinference Code Assistant",
+  "xinf-coder.enableAutoSuggest": "Code Completion Suggest will show when you type the code",
+  "xinf-coder.endpoint": "Point the endpoint of Xinference Code Assistant if it is not on the local host",
+  "xinf-coder.codeModel": "Select the code model to assist, the model must has ability of \"code\".",
+  "xinf-coder.fillInTheMiddle": "Fill in the Middle mode will provide the code prefix and suffix to get better code Completion Suggest",
+  "xinf-coder.temperature": "The temperature of the code Completion Suggest (-2~2), the larger it is, the more diverse the code Completion Suggest",
+  "xinf-coder.maxNewTokens": "The maximum number of tokens to generate once",
+  "xinf-coder.contextWindow": "The number of tokens to be considered as context"
+}

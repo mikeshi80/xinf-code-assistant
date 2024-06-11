@@ -1,0 +1,11 @@
+{
+  "xinf-coder.description": "能使用xinference提供的代码辅助功能配合的VS Code代码助手扩展",
+  "xinf-coder.title": "Xinference代码助手",
+  "xinf-coder.enableAutoSuggest": "代码补全功能，当输入代码时，会根据当前代码上下文提供补全建议",
+  "xinf-coder.endpoint": "当不是本地地址时，请填写服务端地址",
+  "xinf-coder.codeModel": "选择进行代码补全的模型名称，该模型必须具备\"code\"的能力。",
+  "xinf-coder.fillInTheMiddle": "代码中间补全功能，当输入代码时，会根据当前代码前后的文本提供补全建议，关闭时只提供光标之前的文本进行补全",
+  "xinf-coder.temperature": "代码模型的温度(-2~2)，值越大生成的代码越具备想象力",
+  "xinf-coder.maxNewTokens": "每次代码生成时最大的词元数",
+  "xinf-coder.contextWindow": "作为代码补全的上下文窗口的词元数量"
+}

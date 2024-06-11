@@ -1,0 +1,11 @@
+{
+  "xinf-coder.description": "xinferenceで提供するコーディング補佐機能と連協できるVS Codeエクステンション",
+  "xinf-coder.title": "Xinferenceコーディングアシスタント",
+  "xinf-coder.enableAutoSuggest": "コーディング時の自動補佐を有効にする",
+  "xinf-coder.endpoint": "ローカルのXinferenceサーバのエンドポイントではない場合は、ここに指定する",
+  "xinf-coder.codeModel": "コーディングモデルの名前を指定する、モデルは必ずcode能力を持つものであること",
+  "xinf-coder.fillInTheMiddle": "コード補佐時に、カーソル前後のテクストが参照する。無効化すると、カーソル前にのテクストしか参照する",
+  "xinf-coder.temperature": "モデルの温度を指定する、（-2.0～2.0）の範囲で指定する。温度が高いほど、モデルは予測結果の想像力を高くする",
+  "xinf-coder.maxNewTokens": "一回のコード補佐で生成する最大のトークン数",
+  "xinf-coder.contextWindow": "コンテキストの表示範囲"
+}

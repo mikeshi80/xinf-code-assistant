@@ -1,0 +1,106 @@
+{
+  "name": "xinference-coding-assistant",
+  "displayName": "Xinference Coding Assistant",
+  "description": "%xinf-coder.description%",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "xinf-code-assistant.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "configuration": {
+      "title": "%xinf-coder.title%",
+      "properties": {
+        "xinf-coder.enableAutoSuggest": {
+          "type": "boolean",
+          "default": false,
+          "description": "%xinf-coder.enableAutoSuggest%"
+        },
+        "xinf-coder.endpoint": {
+          "type": "string",
+          "default": "http://127.0.0.1:9997",
+          "description": "%xinf-coder.endpoint%"
+        },
+        "xinf-coder.codeModel": {
+          "type": "string",
+          "default": "codeqwen1.5",
+          "description": "%xinf-coder.codeModel%"
+        },
+        "xinf-coder.fillInTheMiddle.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "%xinf-coder.fillInTheMiddle%"
+        },
+        "xinf-coder.temperature": {
+          "type": "number",
+          "default": 0.2,
+          "description": "%xinf-coder.temperature%"
+        },
+        "xinf-coder.maxNewTokens": {
+          "type": "integer",
+          "default": 60,
+          "description": "%xinf-coder.maxNewTokens%"
+        },
+        "xinf-coder.contextWindow": {
+          "type": "integer",
+          "default": 8192,
+          "description": "%xinf-coder.contextWindow%"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "key": "cmd+shift+l",
+        "command": "editor.action.inlineSuggest.trigger"
+      },
+      {
+        "key": "ctrl+shift+l",
+        "command": "editor.action.inlineSuggest.trigger"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "~18.19.34",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "@vscode/l10n-dev": "^0.0.35",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "esbuild": "^0.21.5",
+    "eslint": "^8.57.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.4.5"
+  }
+}
